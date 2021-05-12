@@ -1,0 +1,295 @@
+/* fonts */
+@font-face {
+    font-family: 'Roboto-Light';
+    src: URL('../fonts/RobotoTTF/Roboto-Light.ttf') format('truetype');
+  }
+
+@font-face {
+    font-family: 'Roboto-Medium';
+    src: URL('../fonts/RobotoTFF/Roboto-Medium.ttf') format('truetype');
+}
+
+#headerName {
+    font-family: 'Roboto-Light';
+    font-size: 30px;
+    font-style: italic;
+}
+
+
+
+/* logo */
+.logo {
+    width: 30px;
+    height: 30px;
+}
+
+
+
+/* spacing */
+.horizontal-spacing {
+    width: 15px;
+    display: inline-block;
+}
+
+.vertical-spacing {
+    height: 10px;
+}
+
+
+
+/* Row Heights (Total: 768px or 100vh)*/
+/* header: 56px or 7.2917vh */
+.row1 {
+    height: 11.7188vh;       /* + 16px or 2.0833vh from padding */
+    overflow: hidden;
+}
+
+.row2 {
+    height: 63.0208vh;      /* + 16px or 2.0833vh from padding */
+}
+
+.row3 {
+    height: 11.7188vh;       /* + 16px or 2.0833vh from padding */
+    overflow: hidden;
+}
+
+.mdl-cell {
+    height: 100%;
+    max-height: 100%;
+    overflow: inherit;
+}
+
+
+
+/* map */
+#map {
+    height: 100%;
+    width: 100%;
+}
+
+.main-page-map {
+    height: 410px;
+    width: 500px;
+}
+
+
+
+/* button icon */
+.shrinked-mdl-button {
+    height: 30px;
+    width: 30px;
+    min-width: 30px;
+}
+
+
+
+/* location list styles */
+.scrolling-list-container {
+    overflow-y: scroll;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    height: fit-content;
+    max-height: calc(90% - 100px);
+}
+
+.scrolling-list-container .location-mdl-list {
+    margin-top: 0px;
+}
+
+.location-mdl-list .mdl-list__item {
+    padding-left: 0px;
+    padding-right: 12px;
+    width: 300px;
+    min-height: 72px;
+    height: max-content;
+}
+
+.location-mdl-list .mdl-list__item-primary-content {
+    height: fit-content;
+}
+
+.location-mdl-list .mdl-list__item-sub-title {
+    width: 100%;
+    word-wrap: break-word;
+    height: fit-content;
+}
+
+.location-mdl-list .mdl-list__item-secondary-action button {
+    margin-left: 10px;
+}
+
+.mdl-list__item-primary-content button {
+    margin-right: 10px;
+}
+
+
+
+/* indentation */
+.indentation-div {
+    padding-top: 15px;
+    padding-left: 25px;
+}
+
+/* Table of taxis in taxi.html */
+#taxiTable {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+    white-space: normal; 
+    word-wrap: break-word;
+    padding-bottom: 100px;
+    background-color: white;
+}
+
+.taxiButtonElement {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 5%;
+    text-align: center;
+}
+
+.taxiDetailsElement {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.taxiImgElement {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 20%;
+}
+
+.taxiImg {
+    width: 200px;
+    padding: 30px;
+}
+
+.taxiTableRow {
+    height: auto;
+}
+
+.taxiName {
+    padding: 30px;
+    font-size: 25px;
+}
+
+#sedanFare {
+    padding: 30px;
+    font-size: 18px;
+}
+
+#suvFare {
+    padding: 30px;
+    font-size: 18px;
+}
+
+#vanFare {
+    padding: 30px;
+    font-size: 18px;
+}
+
+#minibusFare {
+    padding: 30px;
+    font-size: 18px;
+}
+
+.estimatedDistance {
+    font-size: 25px;
+}
+
+body {
+    background-color: #F5F5F5;
+}
+
+#taxiRadioLabel {
+    padding-left: 16px;
+}
+
+#continueButtonDiv {
+    text-align: end;
+}
+
+/* bookings.html */
+
+#bookingsListTable {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+    white-space: normal; 
+    word-wrap: break-word;
+    padding-bottom: 100px;
+    background-color: white;
+    font-size: 18px;
+}
+
+.bookingRow {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.infoIconBox {
+    width: 15%;
+    text-align: center;
+}
+
+.infoIcon {
+    width: 90px;
+    padding-right: 40px;
+}
+
+.bookingInfoTable {
+    width: 100%;
+    padding-top: 10px;
+}
+
+.bookingInfoTable td {
+    padding-top: 12px;
+
+}
+
+.bookingName {
+    font-size: 25px;
+
+}
+
+.taxiInnerTableData {
+    padding: 10px;
+}
+
+/*
+.innerTableColumn1 {
+
+}
+
+.innerTableColumn2 {
+
+}
+
+.innerTableColumn3 {
+
+}
+
+.innerTableColumn4 {
+
+}
+*/
+
+.bookingsTableRow {
+    height: auto;
+    padding-bottom: 60px;
+}
+
+.bookingListDataDiv {
+    padding: 30px;
+}
+
+#bookingsListPageNumber {
+    text-align: center;
+    font-size: 25px;
+}
+
+#bookingsListPageNumberDiv {
+    text-align: center;
+}

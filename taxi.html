@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Page Name -->
+  <title>Taxi Selection</title>
+
+  <!-- MDL -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" type="text/css" href="css/material.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+  <!-- MapBox API (DELETE IF NOT NEEDED!!!) -->
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.css' rel='stylesheet'>
+
+  <!-- Provided Scripts -->
+  <script src="js/services.js"></script>
+  <script src="js/taxiData.js"></script>
+
+  <!-- Additional Styling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="shortcut icon" type="image/svg" href="img/logo.svg" />
+
+</head>
+
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <!-- Logo & Title -->
+        <span class="mdl-layout-title" id="headerName">Pristine Cabs</span>
+        <div class="horizontal-spacing"></div>
+        <img src="img/logo.svg" class="logo">
+      </div>
+    </header>
+
+    <!-- Navigation Drawer -->
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Navigation Drawer</span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="index.html">Main Page</a>
+        <a class="mdl-navigation__link" href="bookings.html">Bookings List</a>
+      </nav>
+    </div>
+
+    <!-- Page Content-->
+    <main class="mdl-layout__content">
+      <div class="page-content">
+
+        <!-- First Row -->
+        <div class="mdl-grid row1">
+          <div class="mdl-cell mdl-cell--1-col"></div>
+          <div class="mdl-cell mdl-cell--11-col">
+            <h3>Choose a Taxi:</h3>
+          </div>
+        </div>
+
+
+        <!-- Second Row -->
+        <div class="mdl-grid taxiTableRow">
+          <div class="mdl-cell mdl-cell--1-col"></div>
+
+          <!-- SOME CONTENT -->
+          <div class="mdl-cell mdl-cell--10-col">
+            <table id="taxiTable">
+              <tr>
+                <td class="taxiImgElement">
+                  <img src="img/sedan.svg" class="taxiImg">
+                </td>
+                <td class="taxiDetailsElement">
+                  <span class="taxiName">Sedan</span>
+                  <br><br>
+                  <span id="sedanFare">Fare: RM 50.00</span>
+                </td>
+                <td class="taxiButtonElement">
+                  <label for="radio1" class="mdl-radio mdl-js-radio mdl-js-ripple-effect" id="taxiRadioLabel">
+                    <input type="radio" id="radio1" name="taxiType" value="sedan" class="mdl-radio__button">
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td class="taxiImgElement"><img src="img/sedan.svg" class="taxiImg"></td>
+                <td class="taxiDetailsElement">
+                  <span class="taxiName">SUV</span>
+                  <br><br>
+                  <span id="suvFare">Fare: RM 100.00</span>
+                </td>
+                <td class="taxiButtonElement">
+                  <label for="radio2" class="mdl-radio mdl-js-radio mdl-js-ripple-effect" id="taxiRadioLabel">
+                    <input type="radio" id="radio2" name="taxiType" value="suv" class="mdl-radio__button">
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td class="taxiImgElement"><img src="img/sedan.svg" class="taxiImg"></td>
+                <td class="taxiDetailsElement">
+                  <span class="taxiName">Van</span>
+                  <br><br>
+                  <span id="vanFare">Fare: RM 150.00</span>
+                </td>
+                <td class="taxiButtonElement">
+                  <label for="radio3" class="mdl-radio mdl-js-radio mdl-js-ripple-effect" id="taxiRadioLabel">
+                    <input type="radio" id="radio3" name="taxiType" value="van" class="mdl-radio__button">
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td class="taxiImgElement"><img src="img/sedan.svg" class="taxiImg"></td>
+                <td class="taxiDetailsElement">
+                  <span class="taxiName">Minibus</span>
+                  <br><br>
+                  <span id="minibusFare">Fare: RM 200.00</span>
+                </td>
+                <td class="taxiButtonElement">
+                  <label for="radio4" class="mdl-radio mdl-js-radio mdl-js-ripple-effect" id="taxiRadioLabel">
+                    <input type="radio" id="radio4" name="taxiType" value="minibus" class="mdl-radio__button">
+                  </label>
+                </td>
+              </tr>
+            </table>
+            <br><br>
+            <span class="estimatedDistance">Estimated Trip Distance: </span>
+            <span class="estimatedDistance">55 km</span>
+            <br><br><br><br>
+          </div>
+
+          <div class="mdl-cell mdl-cell--1-col"></div>
+        </div>
+
+        <!-- Third Row -->
+        <div class="mdl-grid row3">
+          <div class="mdl-cell mdl-cell--1-col"></div>
+
+          <div class="mdl-cell mdl-cell--8-col">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+              Previous
+            </button>
+          </div>
+
+          <div class="mdl-cell mdl-cell--2-col" id="continueButtonDiv">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+              Continue
+            </button>
+          </div>
+
+          <div class="mdl-cell mdl-cell--1-col"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/shared.js"></script>
+  <script src="js/"></script>
+
+</body>
+
+</html>

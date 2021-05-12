@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Page Name -->
+    <title>Bookings List</title>
+
+    <!-- MDL -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="css/material.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+    <!-- MapBox API (DELETE IF NOT NEEDED!!!) -->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.css' rel='stylesheet'>
+
+    <!-- Provided Scripts -->
+    <script src="js/services.js"></script>
+    <script src="js/taxiData.js"></script>
+
+    <!-- Additional Styling -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="shortcut icon" type="image/jpg" href="img/logo.svg" />
+
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <!-- Logo & Title -->
+                <span class="mdl-layout-title" id="headerName">Pristine Cabs</span>
+                <div class="horizontal-spacing"></div>
+                <img src="img/logo.svg" class="logo">
+            </div>
+        </header>
+
+        <!-- Navigation Drawer -->
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Navigation Drawer</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="index.html">Main Page</a>
+                <a class="mdl-navigation__link" href="bookings.html">Bookings List</a>
+            </nav>
+        </div>
+
+        <!-- Page Content-->
+        <main class="mdl-layout__content">
+            <div class="page-content">
+
+                <!-- First Row -->
+                <div class="mdl-grid row1">
+                    <div class="mdl-cell mdl-cell--1-col"></div>
+                    <div class="mdl-cell mdl-cell--11-col">
+                        <h3>Bookings Made</h3>
+                    </div>
+                </div>
+
+
+                <!-- Second Row -->
+                <div class="mdl-grid bookingsTableRow">
+                    <div class="mdl-cell mdl-cell--1-col"></div>
+
+                    <!-- SOME CONTENT -->
+                    <div class="mdl-cell mdl-cell--10-col">
+                        <table id="bookingsListTable">
+                            <tr class="bookingRow">
+                                <td>
+                                    <div class="bookingListDataDiv">
+                                        <span class="bookingName">Booking N</span>
+                                        <span class="bookingName">(23.04.2021)</span>
+                                        <table class="bookingInfoTable">
+                                            <tr class="taxiInnerTableDataRow">
+                                                <td>
+                                                    <span>Pick Up:</span>
+                                                </td>
+                                                <td>
+                                                    <span>Monash University Malaysia</span>
+                                                </td>
+                                                <td>
+                                                    <span>Distance: </span>
+                                                </td>
+                                                <td>
+                                                    <span>9000 km</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="taxiInnerTableDataRow">
+                                                <td>
+                                                    <span>Destination: </span>
+                                                </td>
+                                                <td>
+                                                    <span>LRT Subang Jaya</span>
+                                                </td>
+                                                <td>
+                                                    <span>Fare: </span>
+                                                </td>
+                                                <td>
+                                                    <span>RM 90.30</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="taxiInnerTableDataRow">
+                                                <td>
+                                                    <span>No. of Stops: </span>
+                                                </td>
+                                                <td>
+                                                    <span>4</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                                <td class="infoIconBox">
+                                    <img src="img/infoIcon.svg" class="infoIcon">
+                                </td>
+                            </tr>
+                            <tr class="bookingRow">
+                                <td>
+                                    <div class="bookingListDataDiv">
+                                        <span class="bookingName">Booking N</span>
+                                        <span class="bookingName">(23.04.2021)</span>
+                                        <table class="bookingInfoTable">
+                                            <tr class="taxiInnerTableDataRow">
+                                                <td>
+                                                    <span>Pick Up:</span>
+                                                </td>
+                                                <td>
+                                                    <span>Monash University Malaysia</span>
+                                                </td>
+                                                <td>
+                                                    <span>Distance: </span>
+                                                </td>
+                                                <td>
+                                                    <span>9000 km</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="taxiInnerTableDataRow">
+                                                <td>
+                                                    <span>Destination: </span>
+                                                </td>
+                                                <td>
+                                                    <span>LRT Subang Jaya</span>
+                                                </td>
+                                                <td>
+                                                    <span>Fare: </span>
+                                                </td>
+                                                <td>
+                                                    <span>RM 90.30</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="taxiInnerTableDataRow">
+                                                <td>
+                                                    <span>No. of Stops: </span>
+                                                </td>
+                                                <td>
+                                                    <span>4</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                                <td class="infoIconBox">
+                                    <img src="img/infoIcon.svg" class="infoIcon">
+                                </td>
+                            </tr>
+                            <tr class="bookingRow">
+                                <td>
+                                    <div class="bookingListDataDiv">
+                                        <span class="bookingName">Booking N</span>
+                                        <span class="bookingName">(23.04.2021)</span>
+                                        <table class="bookingInfoTable">
+                                            <tr class="taxiInnerTableDataRow">
+                                                <td>
+                                                    <span>Pick Up:</span>
+                                                </td>
+                                                <td>
+                                                    <span>Monash University Malaysia</span>
+                                                </td>
+                                                <td>
+                                                    <span>Distance: </span>
+                                                </td>
+                                                <td>
+                                                    <span>9000 km</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="taxiInnerTableDataRow">
+                                                <td>
+                                                    <span>Destination: </span>
+                                                </td>
+                                                <td>
+                                                    <span>LRT Subang Jaya</span>
+                                                </td>
+                                                <td>
+                                                    <span>Fare: </span>
+                                                </td>
+                                                <td>
+                                                    <span>RM 90.30</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="taxiInnerTableData">
+                                                <td>
+                                                    <span>No. of Stops: </span>
+                                                </td>
+                                                <td>
+                                                    <span>4</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                                <td class="infoIconBox">
+                                    <img src="img/infoIcon.svg" class="infoIcon">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="mdl-cell mdl-cell--1-col"></div>
+                </div>
+
+                <!-- Third Row -->
+                <div class="mdl-grid row3">
+                    <div class="mdl-cell mdl-cell--1-col"></div>
+
+                    <div class="mdl-cell mdl-cell--2-col">
+                        <button
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                            Previous
+                        </button>
+                    </div>
+
+                    <div class="mdl-cell mdl-cell--6-col" id="bookingsListPageNumberDiv">
+                        <span id="bookingsListPageNumber">Page 1</span>
+                    </div>
+
+                    <div class="mdl-cell mdl-cell--2-col" id="continueButtonDiv">
+                        <button
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                            Next
+                        </button>
+                    </div>
+
+                    <div class="mdl-cell mdl-cell--1-col"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/shared.js"></script>
+    <script src="js/"></script>
+
+</body>
+
+</html>
