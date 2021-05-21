@@ -16,6 +16,11 @@
 }
 
 
+/* body color */
+body {
+    background-color: #F5F5F5;
+}
+
 
 /* logo */
 .logo {
@@ -23,6 +28,11 @@
     height: 30px;
 }
 
+/* subtitle */
+.subtitle {
+    color: grey;
+    font-size: 20px;
+}
 
 
 /* spacing */
@@ -36,20 +46,19 @@
 }
 
 
-
-/* Row Heights (Total: 768px or 100vh)*/
-/* header: 56px or 7.2917vh */
+/* Row Heights (Total: 1024px or 100vh)*/
+/* header: 64px or 6.25vh */
 .row1 {
-    height: 11.7188vh;       /* + 16px or 2.0833vh from padding */
+    min-height: 11.7188vh;      /* + 16px or 1.5625vh from padding */
     overflow: hidden;
 }
 
 .row2 {
-    height: 63.0208vh;      /* + 16px or 2.0833vh from padding */
+    min-height: 63.0208vh;       /* + 16px or 1.5625vh from padding */
 }
 
 .row3 {
-    height: 11.7188vh;       /* + 16px or 2.0833vh from padding */
+    height: 14.3229vh;      /* + 16px or 1.5625vh from padding */
     overflow: hidden;
 }
 
@@ -67,18 +76,59 @@
     width: 100%;
 }
 
-.main-page-map {
-    height: 410px;
-    width: 500px;
+.map-container {
+    height: 540px;
+    width: 675px;
+    box-shadow: 0 4px 4px 0 rgb(0 0 0 / 30%), 0 5px 3px -4px rgb(0 0 0 / 30%), 0 3px 7px 0 rgb(0 0 0 / 25%);
+}
+.map-container2 {
+    box-sizing: border-box;
+    width: 100%;
+    height: 370px;
+    margin-top: 18px;
+    margin-bottom: 45px;
+    box-shadow: 0 4px 4px 0 rgb(0 0 0 / 30%), 0 5px 3px -4px rgb(0 0 0 / 30%), 0 3px 7px 0 rgb(0 0 0 / 25%);
+}
+
+#map-container2 canvas {
+    width: 100%;
+    padding: 5px 5px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 360px;
+}
+
+.mapboxgl-popup {
+    max-width: 275px !important;
+    width: fit-content;
+    opacity: 0.85;
+}
+
+.mapboxgl-popup-content {
+    border: 1.25px solid black;
+    width: fit-content;
+    box-sizing: border-box;
+    word-wrap: break-word;
+}
+
+.mapboxgl-popup-content h6 {
+    margin-top: 5px;
+    margin-bottom: 7px;
+    font-weight: bolder;
+}
+
+.mapboxgl-popup-content p {
+    margin-bottom: 0px;
 }
 
 
 
 /* button icon */
 .shrinked-mdl-button {
-    height: 30px;
-    width: 30px;
-    min-width: 30px;
+    --size: 30px;
+    height: var(--size);
+    width: var(--size);
+    min-width: var(--size);
 }
 
 
@@ -86,21 +136,20 @@
 /* location list styles */
 .scrolling-list-container {
     overflow-y: scroll;
-    margin-top: 10px;
-    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    width: 400px;
     height: fit-content;
     max-height: calc(90% - 100px);
 }
 
-.scrolling-list-container .location-mdl-list {
-    margin-top: 0px;
-}
-
 .location-mdl-list .mdl-list__item {
+    --rightMargin: 30px;
+
+    margin-right: var(--rightMargin);
     padding-left: 0px;
-    padding-right: 12px;
-    width: 300px;
-    min-height: 72px;
+    width: calc(100% - var(--rightMargin));
+    min-height: 100px;
     height: max-content;
 }
 
@@ -110,8 +159,8 @@
 
 .location-mdl-list .mdl-list__item-sub-title {
     width: 100%;
-    word-wrap: break-word;
     height: fit-content;
+    word-wrap: break-word;
 }
 
 .location-mdl-list .mdl-list__item-secondary-action button {
@@ -119,16 +168,22 @@
 }
 
 .mdl-list__item-primary-content button {
-    margin-right: 10px;
+    margin-right: 15px;
 }
 
 
 
-/* indentation */
-.indentation-div {
-    padding-top: 15px;
-    padding-left: 25px;
+/* indentation div style for time input */
+#time-input-indentation {
+    margin-top: 10px;
+    margin-left: 20px;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: fit-content;
 }
+
+
 
 /* Table of taxis in taxi.html */
 #taxiTable {
@@ -140,6 +195,7 @@
     word-wrap: break-word;
     padding-bottom: 100px;
     background-color: white;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
 }
 
 .taxiButtonElement {
@@ -167,6 +223,7 @@
 
 .taxiTableRow {
     height: auto;
+    min-height: 63.0208vh;
 }
 
 .taxiName {
@@ -194,12 +251,8 @@
     font-size: 18px;
 }
 
-.estimatedDistance {
+#estimatedDistance {
     font-size: 25px;
-}
-
-body {
-    background-color: #F5F5F5;
 }
 
 #taxiRadioLabel {
@@ -210,13 +263,14 @@ body {
     text-align: end;
 }
 
-/* bookings.html */
 
+
+/* bookings.html */
 #bookingsListTable {
     border: 1px solid black;
     border-collapse: collapse;
     width: 100%;
-    height: 100%;
+    height: auto;
     white-space: normal; 
     word-wrap: break-word;
     padding-bottom: 100px;
@@ -236,7 +290,22 @@ body {
 
 .infoIcon {
     width: 90px;
-    padding-right: 40px;
+}
+
+.infoIconButton {
+    padding: 0;
+    margin-right: 40px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.infoIconButton:hover {
+    opacity: 0.6;
+}
+
+#bookingsListTable {
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
 }
 
 .bookingInfoTable {
@@ -251,34 +320,20 @@ body {
 
 .bookingName {
     font-size: 25px;
+    margin-right: 10px;
+}
 
+.bookingDate {
+    font-size: 20px;
 }
 
 .taxiInnerTableData {
     padding: 10px;
 }
 
-/*
-.innerTableColumn1 {
-
-}
-
-.innerTableColumn2 {
-
-}
-
-.innerTableColumn3 {
-
-}
-
-.innerTableColumn4 {
-
-}
-*/
-
 .bookingsTableRow {
+    min-height: 63.0208vh;
     height: auto;
-    padding-bottom: 60px;
 }
 
 .bookingListDataDiv {
@@ -292,4 +347,92 @@ body {
 
 #bookingsListPageNumberDiv {
     text-align: center;
+}
+
+
+
+/* specifications table */
+#specificationsTable {
+    word-wrap: break-word;
+    font-size: 16px;
+    white-space: normal;
+    max-height: 520px;
+}
+
+#specificationsTable td {
+    max-height: 190px;
+    height: fit-content;
+    text-align: left;
+}
+
+#specificationsTable tr td:nth-child(1) { /*styles first column*/  
+    max-width: 132px;
+    text-align: inherit;
+}
+
+#specificationsTable tr td:nth-child(2) { /*styles second column*/
+    width: 250px;
+    max-width: 250px;
+    text-align:inherit;
+}
+
+#specificationsTable #intermediate {
+    overflow-y: scroll;
+    max-height: inherit;
+    max-width: inherit;
+}
+
+
+
+/* Summary Table */
+#summaryTableDiv {
+    min-height: 63.0208vh;
+}
+
+#summaryTable {
+    word-wrap: break-word;
+    font-size: 16px;
+    white-space: normal;
+    max-height: 480px;
+    margin-bottom: 8px;
+}
+
+#summaryTable td {
+    max-height: 120px;
+    height: fit-content;
+    text-align: left;
+}
+
+#summaryTable tr td:nth-child(1) { /*styles first column*/  
+    width: 150px;
+    max-width: 150px;
+    text-align: inherit;
+}
+
+#summaryTable tr td:nth-child(2) { /*styles second column*/
+    width: 500px;
+    max-width: 500px;
+    text-align:inherit;
+}
+
+#summaryTable tr td:nth-child(3) { /*styles third column*/  
+    width: 150px;
+    max-width: 150px;
+    text-align: inherit;
+}
+
+#summaryTable tr td:nth-child(4) { /*styles forth column*/
+    width: 500px;
+    max-width: 500px;
+    text-align:inherit;
+}
+
+#summaryTable #intermediate {
+    overflow-y: scroll;
+    max-height: inherit;
+    max-width: inherit;
+}
+
+.mdl-layout__drawer-button {
+    outline: none;
 }

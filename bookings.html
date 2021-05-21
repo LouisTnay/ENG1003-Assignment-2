@@ -63,26 +63,26 @@
                     <div class="mdl-cell mdl-cell--1-col"></div>
 
                     <!-- SOME CONTENT -->
-                    <div class="mdl-cell mdl-cell--10-col">
+                    <div class="mdl-cell mdl-cell--10-col" id="bookingsListTableDiv">
                         <table id="bookingsListTable">
-                            <tr class="bookingRow">
+                            <tr class="bookingRow" id="bookingRow1">
                                 <td>
                                     <div class="bookingListDataDiv">
-                                        <span class="bookingName">Booking N</span>
-                                        <span class="bookingName">(23.04.2021)</span>
+                                        <span class="bookingName" id="bookingNameDisplay1">Booking N</span>
+                                        <span class="bookingName" id="bookingDateDisplay1">(23.04.2021)</span>
                                         <table class="bookingInfoTable">
                                             <tr class="taxiInnerTableDataRow">
                                                 <td>
                                                     <span>Pick Up:</span>
                                                 </td>
                                                 <td>
-                                                    <span>Monash University Malaysia</span>
+                                                    <span id="pickUpDisplay1">Monash University Malaysia</span>
                                                 </td>
                                                 <td>
                                                     <span>Distance: </span>
                                                 </td>
                                                 <td>
-                                                    <span>9000 km</span>
+                                                    <span id="distanceDisplay1">9000 km</span>
                                                 </td>
                                             </tr>
                                             <tr class="taxiInnerTableDataRow">
@@ -90,13 +90,13 @@
                                                     <span>Destination: </span>
                                                 </td>
                                                 <td>
-                                                    <span>LRT Subang Jaya</span>
+                                                    <span id="destinationDisplay1">LRT Subang Jaya</span>
                                                 </td>
                                                 <td>
                                                     <span>Fare: </span>
                                                 </td>
                                                 <td>
-                                                    <span>RM 90.30</span>
+                                                    <span id="fareDisplay1">RM 90.30</span>
                                                 </td>
                                             </tr>
                                             <tr class="taxiInnerTableDataRow">
@@ -104,34 +104,36 @@
                                                     <span>No. of Stops: </span>
                                                 </td>
                                                 <td>
-                                                    <span>4</span>
+                                                    <span id="stopsDisplay1">4</span>
                                                 </td>
                                             </tr>
                                         </table>
                                     </div>
                                 </td>
                                 <td class="infoIconBox">
-                                    <img src="img/infoIcon.svg" class="infoIcon">
+                                    <button onclick="infoIconClick(1)" class="infoIconButton">
+                                        <img src="img/infoIcon.svg" class="infoIcon">
+                                    </button>
                                 </td>
                             </tr>
-                            <tr class="bookingRow">
+                            <tr class="bookingRow" id="bookingRow2">
                                 <td>
                                     <div class="bookingListDataDiv">
-                                        <span class="bookingName">Booking N</span>
-                                        <span class="bookingName">(23.04.2021)</span>
+                                        <span class="bookingName" id="bookingNameDisplay2">Booking N</span>
+                                        <span class="bookingName" id="bookingDateDisplay2">(23.04.2021)</span>
                                         <table class="bookingInfoTable">
                                             <tr class="taxiInnerTableDataRow">
                                                 <td>
                                                     <span>Pick Up:</span>
                                                 </td>
                                                 <td>
-                                                    <span>Monash University Malaysia</span>
+                                                    <span id="pickUpDisplay2">Monash University Malaysia</span>
                                                 </td>
                                                 <td>
                                                     <span>Distance: </span>
                                                 </td>
                                                 <td>
-                                                    <span>9000 km</span>
+                                                    <span id="distanceDisplay2">9000 km</span>
                                                 </td>
                                             </tr>
                                             <tr class="taxiInnerTableDataRow">
@@ -139,13 +141,13 @@
                                                     <span>Destination: </span>
                                                 </td>
                                                 <td>
-                                                    <span>LRT Subang Jaya</span>
+                                                    <span id="destinationDisplay2">LRT Subang Jaya</span>
                                                 </td>
                                                 <td>
                                                     <span>Fare: </span>
                                                 </td>
                                                 <td>
-                                                    <span>RM 90.30</span>
+                                                    <span id="fareDisplay2">RM 90.30</span>
                                                 </td>
                                             </tr>
                                             <tr class="taxiInnerTableDataRow">
@@ -153,34 +155,36 @@
                                                     <span>No. of Stops: </span>
                                                 </td>
                                                 <td>
-                                                    <span>4</span>
+                                                    <span id="stopsDisplay2">4</span>
                                                 </td>
                                             </tr>
                                         </table>
                                     </div>
                                 </td>
                                 <td class="infoIconBox">
-                                    <img src="img/infoIcon.svg" class="infoIcon">
+                                    <button onclick="infoIconClick(2)" class="infoIconButton">
+                                        <img src="img/infoIcon.svg" class="infoIcon">
+                                    </button>
                                 </td>
                             </tr>
-                            <tr class="bookingRow">
+                            <tr class="bookingRow" id="bookingRow3">
                                 <td>
                                     <div class="bookingListDataDiv">
-                                        <span class="bookingName">Booking N</span>
-                                        <span class="bookingName">(23.04.2021)</span>
+                                        <span class="bookingName" id="bookingNameDisplay3">Booking N</span>
+                                        <span class="bookingName" id="bookingDateDisplay3">(23.04.2021)</span>
                                         <table class="bookingInfoTable">
                                             <tr class="taxiInnerTableDataRow">
                                                 <td>
                                                     <span>Pick Up:</span>
                                                 </td>
                                                 <td>
-                                                    <span>Monash University Malaysia</span>
+                                                    <span id="pickUpDisplay3">Monash University Malaysia</span>
                                                 </td>
                                                 <td>
                                                     <span>Distance: </span>
                                                 </td>
                                                 <td>
-                                                    <span>9000 km</span>
+                                                    <span id="distanceDisplay3">9000 km</span>
                                                 </td>
                                             </tr>
                                             <tr class="taxiInnerTableDataRow">
@@ -188,28 +192,30 @@
                                                     <span>Destination: </span>
                                                 </td>
                                                 <td>
-                                                    <span>LRT Subang Jaya</span>
+                                                    <span id="destinationDisplay3">LRT Subang Jaya</span>
                                                 </td>
                                                 <td>
                                                     <span>Fare: </span>
                                                 </td>
                                                 <td>
-                                                    <span>RM 90.30</span>
+                                                    <span id="fareDisplay3">RM 90.30</span>
                                                 </td>
                                             </tr>
-                                            <tr class="taxiInnerTableData">
+                                            <tr class="taxiInnerTableDataRow">
                                                 <td>
                                                     <span>No. of Stops: </span>
                                                 </td>
                                                 <td>
-                                                    <span>4</span>
+                                                    <span id="stopsDisplay3">4</span>
                                                 </td>
                                             </tr>
                                         </table>
                                     </div>
                                 </td>
                                 <td class="infoIconBox">
-                                    <img src="img/infoIcon.svg" class="infoIcon">
+                                    <button onclick="infoIconClick(3)" class="infoIconButton">
+                                        <img src="img/infoIcon.svg" class="infoIcon">
+                                    </button>
                                 </td>
                             </tr>
                         </table>
@@ -222,9 +228,10 @@
                 <div class="mdl-grid row3">
                     <div class="mdl-cell mdl-cell--1-col"></div>
 
-                    <div class="mdl-cell mdl-cell--2-col">
+                    <div class="mdl-cell mdl-cell--2-col" id="previousButtonDiv">
                         <button
-                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                            onclick="bookingsListPreviousButton()">
                             Previous
                         </button>
                     </div>
@@ -235,7 +242,8 @@
 
                     <div class="mdl-cell mdl-cell--2-col" id="continueButtonDiv">
                         <button
-                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                            onclick="bookingsListNextButton()">
                             Next
                         </button>
                     </div>
@@ -248,7 +256,7 @@
 
     <!-- Scripts -->
     <script src="js/shared.js"></script>
-    <script src="js/"></script>
+    <script src="js/bookings.js"></script>
 
 </body>
 

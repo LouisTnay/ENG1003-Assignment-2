@@ -40,8 +40,8 @@
     <div class="mdl-layout__drawer">
       <span class="mdl-layout-title">Navigation Drawer</span>
       <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="index.html">Main Page</a>
-        <a class="mdl-navigation__link" href="bookings.html">Bookings List</a>
+        <a class="mdl-navigation__link" onclick="navigateToPage('index.html')">Main Page</a>
+        <a class="mdl-navigation__link" onclick="navigateToPage('bookings.html')">Bookings List</a>
       </nav>
     </div>
 
@@ -63,11 +63,11 @@
           <div class="mdl-cell mdl-cell--1-col"></div>
 
           <!-- SOME CONTENT -->
-          <div class="mdl-cell mdl-cell--10-col">
+          <div class="mdl-cell mdl-cell--10-col" id="taxiTableDiv">
             <table id="taxiTable">
-              <tr>
+              <tr id="carDisplay">
                 <td class="taxiImgElement">
-                  <img src="img/sedan.svg" class="taxiImg">
+                  <img src="img/Car.svg" class="taxiImg">
                 </td>
                 <td class="taxiDetailsElement">
                   <span class="taxiName">Sedan</span>
@@ -75,54 +75,53 @@
                   <span id="sedanFare">Fare: RM 50.00</span>
                 </td>
                 <td class="taxiButtonElement">
-                  <label for="radio1" class="mdl-radio mdl-js-radio mdl-js-ripple-effect" id="taxiRadioLabel">
-                    <input type="radio" id="radio1" name="taxiType" value="sedan" class="mdl-radio__button">
+                  <label for="carRadio" class="mdl-radio mdl-js-radio mdl-js-ripple-effect" id="taxiRadioLabel">
+                    <input type="radio" id="carRadio" name="taxiType" value="car" class="mdl-radio__button">
                   </label>
                 </td>
               </tr>
-              <tr>
-                <td class="taxiImgElement"><img src="img/sedan.svg" class="taxiImg"></td>
+              <tr id="suvDisplay">
+                <td class="taxiImgElement"><img src="img/SUV.svg" class="taxiImg"></td>
                 <td class="taxiDetailsElement">
                   <span class="taxiName">SUV</span>
                   <br><br>
                   <span id="suvFare">Fare: RM 100.00</span>
                 </td>
                 <td class="taxiButtonElement">
-                  <label for="radio2" class="mdl-radio mdl-js-radio mdl-js-ripple-effect" id="taxiRadioLabel">
-                    <input type="radio" id="radio2" name="taxiType" value="suv" class="mdl-radio__button">
+                  <label for="suvRadio" class="mdl-radio mdl-js-radio mdl-js-ripple-effect" id="taxiRadioLabel">
+                    <input type="radio" id="suvRadio" name="taxiType" value="suv" class="mdl-radio__button">
                   </label>
                 </td>
               </tr>
-              <tr>
-                <td class="taxiImgElement"><img src="img/sedan.svg" class="taxiImg"></td>
+              <tr id="vanDisplay">
+                <td class="taxiImgElement"><img src="img/Van.svg" class="taxiImg"></td>
                 <td class="taxiDetailsElement">
                   <span class="taxiName">Van</span>
                   <br><br>
                   <span id="vanFare">Fare: RM 150.00</span>
                 </td>
                 <td class="taxiButtonElement">
-                  <label for="radio3" class="mdl-radio mdl-js-radio mdl-js-ripple-effect" id="taxiRadioLabel">
-                    <input type="radio" id="radio3" name="taxiType" value="van" class="mdl-radio__button">
+                  <label for="vanRadio" class="mdl-radio mdl-js-radio mdl-js-ripple-effect" id="taxiRadioLabel">
+                    <input type="radio" id="vanRadio" name="taxiType" value="van" class="mdl-radio__button">
                   </label>
                 </td>
               </tr>
-              <tr>
-                <td class="taxiImgElement"><img src="img/sedan.svg" class="taxiImg"></td>
+              <tr id="minibusDisplay">
+                <td class="taxiImgElement"><img src="img/Minibus.svg" class="taxiImg"></td>
                 <td class="taxiDetailsElement">
                   <span class="taxiName">Minibus</span>
                   <br><br>
                   <span id="minibusFare">Fare: RM 200.00</span>
                 </td>
                 <td class="taxiButtonElement">
-                  <label for="radio4" class="mdl-radio mdl-js-radio mdl-js-ripple-effect" id="taxiRadioLabel">
-                    <input type="radio" id="radio4" name="taxiType" value="minibus" class="mdl-radio__button">
+                  <label for="minibusRadio" class="mdl-radio mdl-js-radio mdl-js-ripple-effect" id="taxiRadioLabel">
+                    <input type="radio" id="minibusRadio" name="taxiType" value="minibus" class="mdl-radio__button">
                   </label>
                 </td>
               </tr>
             </table>
             <br><br>
-            <span class="estimatedDistance">Estimated Trip Distance: </span>
-            <span class="estimatedDistance">55 km</span>
+            <span id="estimatedDistance">Estimated Trip Distance: 55 km</span>
             <br><br><br><br>
           </div>
 
@@ -134,13 +133,15 @@
           <div class="mdl-cell mdl-cell--1-col"></div>
 
           <div class="mdl-cell mdl-cell--8-col">
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+              onclick="taxiPreviousPage()">
               Previous
             </button>
           </div>
 
           <div class="mdl-cell mdl-cell--2-col" id="continueButtonDiv">
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+              onclick="taxiContinue()">
               Continue
             </button>
           </div>
@@ -153,7 +154,7 @@
 
   <!-- Scripts -->
   <script src="js/shared.js"></script>
-  <script src="js/"></script>
+  <script src="js/taxi.js"></script>
 
 </body>
 

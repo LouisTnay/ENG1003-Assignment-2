@@ -2,7 +2,8 @@
 
 /**
  * File Name: shared.js
- * Description: This JavaScript file is meant to be read by all HTML files. 
+ * Description: This JavaScript file is meant to be read by all HTML files and loaded before the corresponding
+ *              JavaScript files for each page. 
  *              User, Booking, Taxi and Trip classes are defined here.
  *              Public localStorage keys are defined here.
 */
@@ -11,7 +12,8 @@
 const DELETION_KEY = "deletion";
 const NEW_BOOKING_KEY = "newBooking";
 const DETAILED_INFO_KEY = "detailedInfo";
-const USER_DATA_KEY = "userData" // stores the user class instance
+const USER_DATA_KEY = "userData"; // stores the user class instance
+const TAXI_LIST_KEY = "taxiList";
 
 class Trip {
     // constructor
@@ -42,39 +44,53 @@ class Trip {
     }
 
 
-    // mutators
-    set start(locationObj) {
-        if (this._isValidLocationObject(locationObj)) {
-            this._start = Object.assign({}, locationObj);
-        }
-    }
-
-    set end(locationObj) {
-        if (this._isValidLocationObject(locationObj)) {
-            this._end = Object.assign({}, locationObj);
-        }
-    }
-
-
     // public methods
+    getEndPoint(index) {
+        if (index === 0) {
+            return this._start;
+        }
+        if (index === 1) {
+            return this._end;
+        }
+        return null;
+    }
+
+    setEndPoint(locationObject, index) {
+        if (this._isValidLocationObject(locationObject)) {
+            if (index === 0) {
+                this._start = locationObject;
+                return this;
+            }
+            if (index === 1) {
+                this._end = locationObject;
+                return this;
+            }
+        }
+        return null;
+    }
+
     addIntermediate(locationObj) {
         if (this._isValidLocationObject(locationObj)) {
             this._intermediate.push(Object.assign({}, locationObj));
+            return this;
         }
+        return null;
+    }
+
+    deleteIntermediate(deleteIndex) {
+        if (deleteIndex > this._intermediate.length - 1) {
+            return null;
+        }
+        this._intermediate.splice(deleteIndex, 1);
         return this;
     }
 
-    deleteIntermediate(deletePosition) {
-        this._intermediate.splice(deletePosition - 1, 1);
-        return this;
-    }
-
-    editIntermediate(locationObj, editPosition) {
-        if (this._isValidLocationObject(locationObj) && editPosition <= this._intermediate.length) {
-            Object.assign(this._intermediate[editPosition - 1], locationObj);
-            console.log("Im here")
+    editIntermediate(locationObj, editIndex) {
+        if (this._isValidLocationObject(locationObj) && editIndex < this._intermediate.length) {
+            Object.assign(this._intermediate[editIndex], locationObj);
+            return this;
         }
-        return this;
+        return null;
     }
 
     getNumOfStops() {
@@ -92,7 +108,7 @@ class Trip {
     getDistance() {
         let distance = 0;
         const LOCATIONS = this._allLocations();
-        const LOCATION_COUNT = this.numOfStops();
+        const LOCATION_COUNT = this.getNumOfStops();
 
         for (let i = 1; i < LOCATION_COUNT; i++) {
             distance += this._distance(LOCATIONS[i - 1], LOCATIONS[i]);
@@ -191,7 +207,7 @@ class Trip {
             all.push(this._start);
         }
 
-        all.concat(this._intermediate);
+        all = all.concat(this._intermediate);
 
         if (this._end !== null) {
             all.push(this._end);
@@ -205,31 +221,8 @@ class Trip {
 class Taxi {
     constructor(name) {
         this._name = name;
-        this._flagRate = 3;
-        this._fareRate = 10 * 1000 / 115;
-        this._advancedPrice = 2;
-        this._nightLevyRate = 1.5;
-        this._rego = 0;
-
-        if (this._name == "Sedan") {
-            this._logoSrc = "../img/Sedan.svg";
-            this._levy = 0;
-        }
-
-        if (this._name == "SUV") {
-            this._logoSrc = "../img/SUV.svg";
-            this._levy = 5;
-        }
-
-        if (this._name == "Van") {
-            this._logoSrc = "../img/Van.svg";
-            this._levy = 10;
-        }
-
-        if (this._name == "Minibus") {
-            this._logoSrc = "../img/Minibus.svg";
-            this._levy = 15;
-        }
+        this._index = null;
+        this._rego = "";
     }
 
     // accessors
@@ -237,28 +230,64 @@ class Taxi {
         return this._name;
     }
 
+    get index() {
+        return this._index;
+    }
+
+    get rego() {
+        return this._rego;
+    }
+
     get logoSrc() {
-        return this._logoSrc;
+        return `../img/${this._name}.svg`;
     }
 
     get levy() {
-        return this._levy;
+        const LEVY = [
+            { name: "Car", value: 0 },
+            { name: "SUV", value: 5 },
+            { name: "Van", value: 10 },
+            { name: "Minibus", value: 15 },
+        ];
+
+        return LEVY.find(({ name }) => {
+            return (name === this._name);
+        })
+            .value;
     }
 
     get fareRate() {
-        return this._fareRate;
+        const FARE_RATE = 0.1 * 1000 / 115;
+        return FARE_RATE;
     }
 
     get flagRate() {
-        return this._flagRate;
+        const FLAG_RATE = 3;
+        return FLAG_RATE;
     }
 
     get advancedPrice() {
-        return this._advancedPrice;
+        const ADVANCED_PRICE = 2;
+        return ADVANCED_PRICE;
     }
 
     get nightLevyRate() {
-        return this._nightLevyRate;
+        const NIGHT_LEVY_RATE = 1.5;
+        return NIGHT_LEVY_RATE;
+    }
+
+    // mutators
+    set index(index) {
+        if (typeof (index) === "number") {
+            this._index = index;
+        }
+        return this;
+    }
+
+    set rego(rego) {
+        if (typeof (rego) === "string") {
+            this._rego = rego;
+        }
     }
 
     /**
@@ -267,13 +296,10 @@ class Taxi {
     * @param {Taxi} data The parsed object retrieved from local storage.
     */
     fromData(data) {
-        this._name = data._name;
-        this._logoSrc = data._logoSrc;
-        this._levy = data._levy;
-        this._fareRate = data._fareRate;
-        this._flagRate = data._flagRate;
-        this._advancedPrice = data._advancedPrice;
-        this._nightLevyRate = data._nightLevyRate;//rego add-louis*****************************************************
+        for (let attribute in data) {
+            this[attribute] = data[attribute];
+        }
+        return this;
     }
 }
 
@@ -329,7 +355,7 @@ class Booking {
     }
     set trip(trip) {
         if (trip instanceof Trip) {
-            this._trip = new Trip
+            this._trip = new Trip()
                 .fromData(JSON.parse(JSON.stringify(trip)));
         }
     }
@@ -341,11 +367,16 @@ class Booking {
 
     // methods
     getFare(name = "") {
-        if(name === "") {
-            let taxi = this._taxi;
+        // specify taxi type to calculate fare of
+        let taxi;
+        if (name === "") {
+            taxi = this._taxi;
+            if (taxi === null) {
+                return null;        // ERROR: no taxi assigned
+            }
         }
         else {
-            let taxi = new Taxi(name);
+            taxi = new Taxi(name);
         }
 
         // base charge
@@ -358,7 +389,11 @@ class Booking {
         }
 
         // night levy surcharge
-        if (this._time.getHours >= 0 && this._time.getHours <= 6) {
+        let calculationTime = this._isAdvanced ? this._time : new Date();
+        if (calculationTime === null) {
+            return null;            // ERROR: no time assigned      
+        }
+        if (calculationTime.getHours() >= 0 && calculationTime.getHours() <= 6) {
             fare *= taxi.nightLevyRate;
         }
 
@@ -367,19 +402,30 @@ class Booking {
 
     fixBookingTime() {
         this._bookingTime = new Date();
-        if (this._isAdvanced) {
+        if (!this._isAdvanced) {
             this._time = this._bookingTime;
         }
         return this;
     }
 
     fromData(dataObject) {
-        this._name = dataObject._name;
-        this._isAdvanced = dataObject._isAdvanced;
-        this._trip = new Trip().fromData(dataObject._trip);
-        this._time = new Date(dataObject._time);
-        this._bookingTime = new Date(dataObject._bookingTime);
-        this._taxi = new Taxi().fromData(dataObject._taxi);
+        let { _name, _isAdvanced, _trip, _taxi, _time, _bookingTime } = dataObject;
+
+        this._name = _name;
+        this._isAdvanced = _isAdvanced;
+        if (_trip !== null) {
+            this._trip = new Trip().fromData(dataObject._trip);
+        }
+        if (_taxi !== null) {
+            this._taxi = new Taxi().fromData(dataObject._taxi);
+        }
+        if (_time !== null) {
+            this._time = new Date(dataObject._time);
+        }
+        if (_bookingTime !== null) {
+            this._bookingTime = new Date(dataObject._bookingTime);
+        }
+
         return this;
     }
 }
@@ -397,11 +443,24 @@ class User {
     }
 
     // methods
+    /**
+    * Method Name: addBooking
+    * @desc Adds a booking to the User class instance in chronological order (it assumes that the bookings in the user class instance is already in chronological order)
+    * @param {Booking} newBooking A new Booking class instance
+    */
     addBooking(newBooking) {
-        this._bookings.push(
-            new Booking().fromData(JSON.parse(JSON.stringify(newBooking)))
-        );
-        return this;
+        const DATA = JSON.parse(JSON.stringify(newBooking));
+        let bookingCopy = new Booking().fromData(DATA).fixBookingTime();
+
+        // add booking from latest to earliest
+        for (let i in this._bookings) {
+            if (bookingCopy.bookingTime >= this._bookings[i].bookingTime) {
+                this._bookings.splice(i, 0, bookingCopy);
+                return i;
+            }
+        }
+        this._bookings.push(bookingCopy);
+        return (this._bookings.length - 1);
     }
 
     deleteBooking(bookingIndex) {
@@ -409,20 +468,122 @@ class User {
         return this;
     }
 
-    //create an editBooking class
-
     /**
     * Method Name: fromData
     * @desc Restoring the data state of the object retrieved from local storage for a single User instance.
     * @param {Booking} data The parsed object retrieved from local storage.
     */
     fromData(data) {
-        this._bookings = [];
         for (let i = 0; i < data._bookings.length; i++) {
-            this._bookings.push([]); // check later -louis*************************************************************
-            this._bookings[i]
-            this._bookings[i].fromData(data._bookings[i]);
+            this._bookings.push(new Booking().fromData(data._bookings[i]));
         }
         return this;
     }
+}
+
+
+/**
+ * Function Name: localStorageCheck
+ * @desc check if there is data associated with the given key in localStorage
+ * @param {string} key the key for localStorage
+ * @return {boolean} true if there is data, false otherwise
+ */
+function localStorageCheck(key) {
+    if (typeof (Storage) === undefined) {
+        console.warn("Local storage is undefined.");
+        return false;
+    }
+
+    if (localStorage.getItem(key) == null) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+
+/**
+ * Function Name: localStorageUpdate
+ * @desc converts data to string then saves the given data in localStorage with the given key
+ * @param {string} key the key for localStorage
+ * @param data the data to be stored in localStorage
+ */
+function localStorageUpdate(key, data) {
+    if (typeof (Storage) === undefined) {
+        window.alert("Sorry. The page is unable to save data because local storage is unavailable.")
+        throw new Error("Local storage is unavailable. Page is unable to save data!");
+        // error not caught to terminate program
+    }
+
+    let dataString = JSON.stringify(data);
+    localStorage.setItem(key, dataString);
+}
+
+
+/**
+ * Function Name: localStorageGet
+ * @desc retrieves the data associated with the given key from localStorage
+ * @param {string} key the key for localStorage
+ * @return {any} the originally stored data (primitive data types) or object containing the data of the
+ *               originally stored composite data type
+ */
+function localStorageGet(key) {
+    if (typeof (Storage) === undefined) {
+        window.alert("Sorry. The page is unable to load properly because local storage is unavailable.")
+        throw new Error("Local storage is unavailable. Page is unable to load!");
+        // error not caught to terminate program
+    }
+
+    let data = localStorage.getItem(key);
+    try {
+        data = JSON.parse(data);
+    }
+    catch (error) {
+        console.warn(error);
+    }
+
+    return data;
+}
+
+/**
+ * Function Name: navigateToPage
+ * @param {string} pageSource 
+ * @returns {void}
+ */
+function navigateToPage(pageSource) {
+    // save newBooking data if required
+    if (saveData !== undefined) {
+        // ask to save data
+        if (window.confirm("Save entered data for new booking?")) {
+            if (saveData !== null) { // saveData is null for pages with no input to save
+                saveData();
+            }
+        }
+        else {
+            // confirm clearing all newBooking data
+            if (!window.confirm("Confirm to leave page without saving?")) {
+                return;
+            }
+            localStorage.removeItem(NEW_BOOKING_KEY);
+        }
+    }
+
+    window.location = pageSource;
+}
+
+
+/* Global Code on Load*/
+let appUser = new User();
+let newBooking;
+
+if (localStorageCheck(USER_DATA_KEY)) {
+    appUser.fromData(localStorageGet(USER_DATA_KEY));
+}
+
+if (localStorageCheck(NEW_BOOKING_KEY)) {
+    newBooking = new Booking().fromData(localStorageGet(NEW_BOOKING_KEY));
+}
+else {
+    newBooking = new Booking(`Booking ${appUser.bookings.length + 1}`);
 }
